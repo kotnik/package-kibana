@@ -62,6 +62,11 @@ if [[ $os == "centos" ]]; then
 
 elif [[ $os == "debian" ]]; then
 
+  # Install dependencies.
+  command -v git    >/dev/null 2>&1 || ( apt-get -y install git-core; )
+  command -v bundle >/dev/null 2>&1 || ( apt-get -y install bundler; )
+  command -v fpm    >/dev/null 2>&1 || ( gem install fpm; )  
+
   # Create required directories
   mkdir -p $basedir/build_root_debian/usr/local
   mkdir -p $basedir/build_root_debian/etc/init.d
